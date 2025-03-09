@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Attendance - Admin Dashboard</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Admin Dashboard</h1>
+      <div>
+        <span>Welcome, <span id="adminName"></span></span>
+        <button onclick="adminLogout()" class="btn-danger">Logout</button>
+      </div>
+    </div>
+    
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('attendance')">Attendance Records</div>
+      <div class="tab" onclick="switchTab('users')">Manage Users</div>
+    </div>
+    
+    <!-- Attendance Tab -->
+    <div id="attendanceTab" class="tab-content active">
+      <h2>Attendance Records</h2>
+      
+      <div class="filter-controls">
+        <div class="filter-group">
+          <label for="attendanceDate">Filter by Date</label>
+          <input type="date" id="attendanceDate">
+          <button onclick="filterAttendanceByDate()">Filter</button>
+        </div>
+        
+        <div class="filter-group">
+          <label for="attendanceMonth">Filter by Month</label>
+          <input type="month" id="attendanceMonth">
+          <button onclick="filterAttendanceByMonth()">Filter</button>
+        </div>
+      </div>
+      
+      <table id="attendanceData">
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+          <th>Action</th>
+          <th>Date & Time</th>
+        </tr>
+      </table>
+    </div>
+    
+    <!-- Users Tab -->
+    <div id="usersTab" class="tab-content">
+      <h2>User Management</h2>
+      
+      <h3>Add New User</h3>
+      <form id="newUserForm">
+        <div class="form-group">
+          <label for="newUserId">User ID</label>
+          <input type="text" id="newUserId" required>
+        </div>
+        <div class="form-group">
+          <label for="newUserName">Full Name</label>
+          <input type="text" id="newUserName" required>
+        </div>
+        <div class="form-group">
+          <label for="newUserPassword">Password</label>
+          <input type="password" id="newUserPassword" required>
+        </div>
+        <button type="button" onclick="addNewUser()">Add User</button>
+      </form>
+      
+      <h3>Current Users</h3>
+      <table id="userList">
+        <tr>
+          <th>User ID</th>
+          <th>Name</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <script src="../js/database.js"></script>
+  <script src="../js/admin.js"></script>
+  <script>
+    // Tab switching functionality
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      if (tabName === 'users') {
+        document.querySelector('.tab:nth-child(2)').classList.add('active');
+        document.getElementById('usersTab').classList.add('active');
+      } else {
+        document.querySelector('.tab:nth-child(1)').classList.add('active');
+        document.getElementById('attendanceTab').classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

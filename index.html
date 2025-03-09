@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Attendance System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gym Attendance System</h1>
+    
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2>Member Login</h2>
+      <form onsubmit="login(); return false;">
+        <div class="form-group">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    
+    <!-- Member Dashboard -->
+    <div id="memberDashboard" style="display: none;">
+      <div class="header">
+        <h2 id="welcomeMessage"></h2>
+        <button onclick="logout()" class="btn-danger">Logout</button>
+      </div>
+      
+      <div class="action-buttons">
+        <button onclick="checkIn()">Check In</button>
+        <button onclick="logout()" class="btn-danger">Check Out</button>
+      </div>
+      
+      <h3>Today's Attendance</h3>
+      <div id="attendanceStatus"></div>
+    </div>
+  </div>
+  
+  <script src="js/database.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
